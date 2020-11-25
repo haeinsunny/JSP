@@ -5,19 +5,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>게시판 입력</title>
 </head>
 
 <body>
     <div align="center">
         <h1>글쓰기</h1>
-        <br/>
+        <br />
     </div>
 
     <div align="center">
-        <form action="">
+        <form id="frm" name="frm" action="/Board/BorderInput.do" method="post">
             <table border="1">
-                <tr>
+               <tr>
                     <th width="100">작성자</th>
                     <td width="300"><input type="text" id="writer" name="writer"></td>
                 </tr>
@@ -35,12 +35,10 @@
                 </tr>
             </table>
             <br/>
+            <button type="submit">입력</button> &nbsp;&nbsp;&nbsp;
+            <button type="reset">취소</button> &nbsp;&nbsp;&nbsp;
+            <button type="submit" onclick="location.href='/Board/BorderList.do'">목록</button>
         </form>
-    </div>
-    <div align="center">
-        <button type="submit">등록</button> &nbsp;&nbsp;&nbsp;
-        <button type="reset">취소</button> &nbsp;&nbsp;&nbsp;
-        <button type="submit" onclick="location.href='/Board/Border.do'">목록</button>
     </div>
 </body>
 
