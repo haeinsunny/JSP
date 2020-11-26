@@ -13,13 +13,16 @@ public class BorderDao extends DAO { // 상위 DAO를 상속받아서 만들기
 	private PreparedStatement psmt;
 	private ResultSet rs;
 
-	private final String SELECT_ALL = "SELECT * FROM BORDER ORDER BY borderid ASC"; // 대문자로 바꿔주기 select all하는 프로그램
+	private final String SELECT_ALL = "SELECT * FROM BORDER ORDER BY borderid DESC"; // 대문자로 바꿔주기 select all하는 프로그램
 	private final String SELECT_ONE = "SELECT * FROM BORDER WHERE BORDERID=?";
 	private final String INSERT = "INSERT INTO BORDER(BORDERID, BORDERWRITER, BORDERTITLE, BORDERCONTENT, BORDERDATE)"
 			+ "VALUES(b_seq.nextval, ?, ?, ?, ?)";
 	private final String HIT_UPDATE = "update border set borderhit = borderhit+1 where borderid =?";
 	private final String UPDATE = "UPDATE BORDER SET BORDERDATE=?, BORDERCONTENT=? WHERE BORDERID=?";
 	private final String DELETE = "DELETE FROM BORDER WHERE BORDERID=?";
+	private final String SELECT_WRITER = "SELECT * FROM BORDER WHERE BORDERWRITER LIKE ?";
+	private final String SELECT_TITLE = "SELECT * FROM BORDER WHERE BORDERTITLE LIKE ?";
+	private final String SELECT_CONTENT = "SELECT * FROM BORDER WHERE BORDERCONTENT LIKE ?";
 	
 	public ArrayList<BorderVo> selectAll() { // 전체 데이터 가져오기
 		ArrayList<BorderVo> list = new ArrayList<BorderVo>();
@@ -44,6 +47,35 @@ public class BorderDao extends DAO { // 상위 DAO를 상속받아서 만들기
 			close();
 		}
 		return list;
+	}
+	
+	public ArrayList<BorderVo> selectSearch(String search, String word){
+		ArrayList<BorderVo> slist = new ArrayList<BorderVo>();
+		BorderVo vo;
+		if(search.equals("writer")) { //string 일때는 .equals("?")
+		try {
+			psmt = conn.prepareStatement(SELECT_WRITER); // 실어보내는것
+			psmt.setString(1, "%" + word+ "%");
+			rs = psmt.executeQuery(); // 보낸명령을 실행시켜달라
+			while (rs.next()) {
+				vo = new BorderVo(); // 초기화하고
+				vo.setBorderId(rs.getInt("borderid")); // 값들을 가져와서
+				vo.setBorderWriter(rs.getString("borderwriter"));
+				vo.setBorderTitle(rs.getString("bordertitle"));
+				vo.setBorderContent(rs.getString("bordercontent"));
+				vo.setBorderDate(rs.getDate("borderdate"));
+				vo.setBorderHit(rs.getInt("borderhit"));
+
+				slist.add(vo); // 리스트에 담아라
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { // finally되면 닫아주는 프로그램 실행 (밑의 메소드 만들어서)
+			close();
+		}
+		return slist;
+	}
+		return slist;
 	}
 
 	public BorderVo selectOne(BorderVo vo) { // 한건조회 및 조회수 증가. 위에서 다 가져온 BorderVo를 사용한다.

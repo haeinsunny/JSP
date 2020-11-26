@@ -11,12 +11,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+	
+	#jumbo{
+	background-color: lavender;
+	}
+	
 	ul {
   	list-style-type: none;
-  	margin: 0;
+  	margin: 0px 0px;
   	padding: 0;
   	overflow: hidden;
-  	background-color: orange;
+  	background-color: #CC99FF;
 	}
 
 	li {
@@ -24,7 +29,7 @@
 	}
 
 	li a {
-  	display: block;
+	display: block;
   	color: white;
   	text-align: center;
   	padding: 14px 16px;
@@ -32,18 +37,22 @@
 	}
 
 	li a:hover {
-  	background-color: orangered;
+	color: white;
+  	background-color: #664CFF;
+  	text-decoration: none;
 	}
+	
 </style>
 </head>
 <body>
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>SUNNY</h1>
-</div>
+	<div class="jumbotron text-center" id="jumbo" style="margin-bottom:0;">
+  		<h1>해인</h1>
+	</div>
+
 	<div>
 		<ul>
   			<li><a class="active" href="/Board/index.jsp">Home</a></li>
-  			<li><a href="#">게시판</a></li>
+  			<li><a href="/Board/BorderList.do">게시판</a></li>
   			<li><a href="#contact">회원관리</a></li>
   			<li><a href="#about">소소한일상</a></li>
   			<li><a href="#">Login</a></li>

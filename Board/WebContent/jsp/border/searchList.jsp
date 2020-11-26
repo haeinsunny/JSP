@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>검색결과페이지</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -53,7 +53,7 @@
                 <th width="100" style="background-color:lavenderblush;">작성일</th>
                 <th width="100" style="background-color:lavenderblush;">조회수</th>
               </tr>
-              <c:forEach var="vo" items="${list }">
+              <c:forEach var="vo" items="${slist }">
                 <tr class="record" onclick="location.href='/Board/BorderRead.do?id=${vo.borderId}'">
                   <td width="100" align="center">${vo.borderId }</td>
                   <td width="250" align="center">${vo.borderTitle }</td>
@@ -66,23 +66,22 @@
             <br />
             
             <form action="/Board/SearchList.do">
-            <table class="search" align="center">
-              <tr>
-                <td>
-                  <select name="search" id="search">
-                    <option value="writer">작성자</option>
-                    <option value="title">제목</option>
-                    <option value="content">내용</option>
-                  </select>
-                </td>
-                <td>
-                  <input type="text" name="word" id="word">
-                </td>
-                <td>
-                  <input type="submit" class="btn btn-outline-info btn-sm" value="검색"
-                    ></td>
-              </tr>
-            </table>
+              <table class="search" align="center">
+                <tr>
+                  <td>
+                    <select name="search" id="search">
+                      <option value="writer">작성자</option>
+                      <option value="title">제목</option>
+                      <option value="content">내용</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" name="word" id="word">
+                  </td>
+                  <td>
+                    <input type="submit" class="btn btn-outline-info btn-sm" value="검색"></td>
+                </tr>
+              </table>
             </form>
         </div>
       </div>
