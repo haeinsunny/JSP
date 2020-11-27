@@ -26,7 +26,7 @@
     }
   </style>
 </head>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="/jsp/menu/menu.jsp" />
 
 <body>
   <br />
@@ -55,7 +55,7 @@
                 <th width="100" style="background-color:lavenderblush;">조회수</th>
               </tr>
               <c:forEach var="vo" items="${list }">
-                <tr class="record" onclick="location.href='/Board/BorderRead.do?id=${vo.borderId}'">
+                <tr class="record" onclick="location.href='/Member/BorderRead.do?id=${vo.borderId}'">
                   <td width="100" align="center">${vo.borderId }</th>
                   <td width="250" align="center">${vo.borderTitle }</th>
                   <td width="100" align="center">${vo.borderWriter }</th>
@@ -66,7 +66,7 @@
             </table>
             <br />
 
-            <form action="/Board/SearchList.do">
+            <form action="/Member/SearchList.do">
               <table class="search" align="center">
                 <tr>
                   <td>

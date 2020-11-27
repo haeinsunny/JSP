@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>검색결과페이지</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -26,7 +26,7 @@
     }
   </style>
 </head>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="/jsp/menu/menu.jsp" />
 
 <body>
   <br />
@@ -45,7 +45,6 @@
         </div>
         <br />
         <div>
-          <form>
             <table border="1" align="center">
               <tr align="center">
                 <th width="100" style="background-color:lavender;">번호</th>
@@ -54,19 +53,19 @@
                 <th width="100" style="background-color:lavenderblush;">작성일</th>
                 <th width="100" style="background-color:lavenderblush;">조회수</th>
               </tr>
-              <c:forEach var="vo" items="${list }">
-                <tr class="record" onclick="location.href='/Board/BorderRead.do?id=${vo.borderId}'">
-                  <td width="100" align="center">${vo.borderId }</th>
-                  <td width="250" align="center">${vo.borderTitle }</th>
-                  <td width="100" align="center">${vo.borderWriter }</th>
-                  <td width="100" align="center">${vo.borderDate }</th>
-                  <td width="100" align="center">${vo.borderHit }</th>
+              <c:forEach var="vo" items="${slist }">
+                <tr class="record" onclick="location.href='/Member/BorderRead.do?id=${vo.borderId}'">
+                  <td width="100" align="center">${vo.borderId }</td>
+                  <td width="250" align="center">${vo.borderTitle }</td>
+                  <td width="100" align="center">${vo.borderWriter }</td>
+                  <td width="100" align="center">${vo.borderDate }</td>
+                  <td width="100" align="center">${vo.borderHit }</td>
                 </tr>
               </c:forEach>
             </table>
             <br />
-
-            <form action="/Board/SearchList.do">
+            
+            <form action="/Member/SearchList.do">
               <table class="search" align="center">
                 <tr>
                   <td>
@@ -78,14 +77,12 @@
                   </td>
                   <td>
                     <input type="text" name="word" id="word">
-                  </td>&nbsp;
+                  </td>
                   <td>
                     <input type="submit" class="btn btn-outline-info btn-sm" value="검색"></td>
                 </tr>
               </table>
             </form>
-
-          </form>
         </div>
       </div>
     </div>
