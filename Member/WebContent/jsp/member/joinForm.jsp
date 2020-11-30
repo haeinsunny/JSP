@@ -81,13 +81,12 @@
 			success : function(data) {
 				console.log(data);
 					
-				if(data[0].mName == ""){
+				if(data == ""){
 					$("#check").hide();	
 					$("#check_sucess").show();	
-					$("#check").value = 'checked';	
-									
+					$("#check").attr('value', 'checked');									
 				}else{
-					alert("이미 존재하는 아이디 입니다 :(");	
+					alert("이미 존재하는 아이디 입니다 :(");
 				}
 
 			},

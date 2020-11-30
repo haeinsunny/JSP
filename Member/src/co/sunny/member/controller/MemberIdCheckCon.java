@@ -33,8 +33,6 @@ public class MemberIdCheckCon extends HttpServlet {
 		MemberVo vo = new MemberVo();
 		
 		vo.setmId(request.getParameter("id"));
-
-//		String name = dao.checkId(vo.getmId()); 
 		
 		List<MemberVo> list = dao.checkId(vo); 
 		
