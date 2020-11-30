@@ -20,8 +20,10 @@
   </div>
   <ul>
     <!-- 서블릿의 세션객체로부터 읽어오는거임-->
+   <li><a href="/Member/jsp/member/joinForm.jsp">회원가입</a></li>
+   
     <c:if test="${id eq null || auth eq null}">
-      <li><a href="jsp/member/loginForm.jsp">로그인</a></li>
+      <li><a href="/Member/jsp/member/loginForm.jsp">로그인</a></li>
     </c:if>
 
     <li><a href="/Member/BorderList.do">게시판</a></li>

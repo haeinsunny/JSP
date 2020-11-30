@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import co.sunny.border.vo.BorderVo;
 import co.sunny.member.vo.MemberVo;
@@ -56,6 +57,8 @@ public class MemberDao {
 			+ "VALUES(?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE MEMBER SET PASSWORD=? WHERE M_AUTH=?";
 	private final String DELETE = "DELETE FROM MEMBER WHERE M_ID=?";
+	private final String JOIN = "INSERT INTO MEMBER(M_ID, M_NAME, PASSWORD, M_AUTH)" + 
+								"VALUES(?, ?, ?, 'user')";	
 	
 	//전체조회
 	public ArrayList<MemberVo> selectAll() {
@@ -174,8 +177,71 @@ public class MemberDao {
 		return n;
 	}
 	
-	
+	//회원가입
+	public int join(MemberVo vo) {
+		int n = 0;	
+		try {
+			psmt = conn.prepareStatement(JOIN);
+			psmt.setString(1, vo.getmId());
+			psmt.setString(2, vo.getmName());
+			psmt.setString(3, vo.getPassword());
+			n = psmt.executeUpdate(); // executeUpdate메소드는 건수를 돌려준다.
+		} catch (SQLException e) { // SQLException하는 catch
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 
+		return n;
+	}
+	
+//	//중복체크
+//	public String checkId(String id) {
+//		String name = null;
+//		List<MemberVo> list = new ArrayList<>();
+//		try {
+//			psmt = conn.prepareStatement(SELECT_ONE);
+//			psmt.setString(1, id);
+//			rs = psmt.executeQuery(); 
+//			if (rs.next()) { 				
+//				name = rs.getString("M_NAME");
+//				list.add(name);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally { // finally되면 닫아주는 프로그램 실행 (밑의 메소드 만들어서)
+//			close();
+//		}
+//
+//		return name;
+//	}
+	
+	//특정조회
+		public List<MemberVo> checkId(MemberVo vo) {
+			List<MemberVo> list = new ArrayList<>();
+			try {
+				psmt = conn.prepareStatement(SELECT_ONE);
+				psmt.setString(1, vo.getmId());
+				rs = psmt.executeQuery(); 
+				if (rs.next()) { 
+					vo = new MemberVo(); 
+					vo.setmId(rs.getString("M_ID")); 
+					vo.setmName(rs.getString("M_NAME"));
+					vo.setPassword(rs.getString("PASSWORD"));
+					vo.setmAuth(rs.getString("M_AUTH"));
+					vo.setmPoint(rs.getInt("M_POINT"));
+					
+					list.add(vo);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally { // finally되면 닫아주는 프로그램 실행 (밑의 메소드 만들어서)
+				close();
+			}
+
+			return list;
+		}
+	
 }
 
 

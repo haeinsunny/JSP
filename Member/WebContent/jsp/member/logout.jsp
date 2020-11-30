@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<br/>
 <div align="center">
 		<h1>${name } 님 로그아웃 되었습니다.</h1>
 	</div>
