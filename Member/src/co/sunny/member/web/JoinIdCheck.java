@@ -1,4 +1,4 @@
-package co.sunny.member.controller;
+package co.sunny.member.web;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,11 +16,11 @@ import net.sf.json.JSONArray;
 
 
 @WebServlet("/MemberIdCheck.do")
-public class MemberIdCheckCon extends HttpServlet {
+public class JoinIdCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public MemberIdCheckCon() {
+    public JoinIdCheck() {
         super();
         // TODO Auto-generated constructor stub
     }

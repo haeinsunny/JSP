@@ -17,7 +17,7 @@
 <br/>
 <br/>
 	<div align="center">
-		<h3>${vo.mName} 님 회원가입 되었습니다.</h3>
+		<h3>${name}님 회원가입 되었습니다.</h3>
 		<br/>
 		<button class="btn btn-warning" onclick="location.href='/Member/jsp/member/loginForm.jsp'">로그인하기</button>
 	</div>

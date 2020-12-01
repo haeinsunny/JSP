@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 		
 		//request객체에 싣기
 		request.setAttribute("vo", vo);
-		MemberVo temp = (MemberVo) request.getAttribute("vo");
+//		MemberVo temp = (MemberVo) request.getAttribute("vo"); //request에 담긴걸 (MemberVo)로 명시적변환
 
 		String viewPage = "jsp/member/loginResult.jsp";	 //페이지를 보여주자
 		RequestDispatcher dp = request.getRequestDispatcher(viewPage);	

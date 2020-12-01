@@ -11,7 +11,7 @@
 <body>
 <br/>
 <div align="center">
-		<h1>${name } 님 로그아웃 되었습니다.</h1>
+		<h3>${name }님 로그아웃 되었습니다.</h3>
 	</div>
 </body>
 </html>

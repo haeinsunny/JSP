@@ -1,4 +1,4 @@
-package co.sunny.member.controller;
+package co.sunny.member.web;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -15,11 +15,11 @@ import co.sunny.member.vo.MemberVo;
 
 
 @WebServlet("/MemberJoin.do")
-public class MemberJoinCon extends HttpServlet {
+public class Join extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
-    public MemberJoinCon() {
+    public Join() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,16 +35,20 @@ public class MemberJoinCon extends HttpServlet {
 		vo.setPassword(request.getParameter("pw"));
 
 		int n = dao.join(vo); // n에 dao의 insert(vo)를 실어서 보낸다. 입력건 나타냄
-
-		String viewPage;
-		if (n != 0) { // 항상 정상적으로 입력됐는지 모르므로 입력이 성공했으면 메세지 보여주려고
-			response.sendRedirect("/Member/jsp/member/joinResult.jsp");  
+		
+		request.setAttribute("name", vo.getmName());	
+		
+		String viewPage = "jsp/member/joinResult.jsp";
+		RequestDispatcher dp = request.getRequestDispatcher(viewPage);	//디스패쳐에 실어보내기
+				
+		if (n != 0) { // 항상 정상적으로 입력됐는지 모르므로 입력이 성공했으면 메세지 보여주려고	
+			dp.forward(request, response);
+			//response.sendRedirect("/Member/jsp/member/joinResult.jsp"); 
 			//어노테이션 기반에서 서블릿 호출시는 response객체를 이용해서 호출한다.
 		} else {
 			String msg = "정상적으로 입력하지 못했습니다.";
 			request.setAttribute("msg", msg);  //위의 매세지를 req객체에 실어보낸다.
 			viewPage = "jsp/border/inputError.jsp";	
-			RequestDispatcher dp = request.getRequestDispatcher(viewPage);	//디스패쳐에 실어보내기
 			dp.forward(request, response);
 		}		
 	}
