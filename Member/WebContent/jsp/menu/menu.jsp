@@ -127,6 +127,7 @@
     <li class="nav-item">
       <a class="nav-link" href="/Member/jsp/menu/menu.jsp">HOME</a>
     </li>
+    <c:if test="${id eq null || auth eq null}">
     <li class="nav-item">
       <a class="nav-link" href="/Member/jsp/member/joinForm.jsp">회원가입</a>
     </li>
