@@ -7,7 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import co.sunny.notice.NoticeVo;
+import co.sunny.border.vo.BorderVo;
+import co.sunny.notice.vo.NoticeVo;
 
 public class NoticeDao {
 	private String driver = "oracle.jdbc.driver.OracleDriver";
@@ -51,7 +52,9 @@ public class NoticeDao {
 	//sql작성
 	private final String NOTICELIST = "SELECT * FROM NOTICE";
 	private final String INSERT = "INSERT INTO NOTICE(NID, NWRITER, NTITLE, NCONTENT, NATTACH) "
-								+ "VALUES(N_SEQ.NEXTVAL, ?, ?, ? ?)";
+								+ "VALUES(N_SEQ.NEXTVAL, ?, ?, ?, ?)";
+	private final String SELECTONE = "SELECT * FROM NOTICE WHERE NID=?";
+	private final String HIT_UPDATE = "UPDATE NOTICE SET NHIT = NHIT+1 WHERE NID =?";
 	
 	public ArrayList<NoticeVo> selectAll(){
 		ArrayList<NoticeVo> list = new ArrayList<NoticeVo>();
@@ -67,7 +70,7 @@ public class NoticeDao {
 				vo.setnContent(rs.getString("ncontent"));	
 				vo.setnDate(rs.getDate("ndate"));	
 				vo.setnHit(rs.getInt("nhit"));	
-				vo.setnAttatch(rs.getString("nattach"));
+				vo.setnAttach(rs.getString("nattach"));
 				
 				list.add(vo);
 			}
@@ -80,6 +83,34 @@ public class NoticeDao {
 		return list;	
 	}
 	
+	public NoticeVo selectOne(NoticeVo vo) {
+		try {
+			psmt = conn.prepareStatement(SELECTONE);	
+			psmt.setInt(1, vo.getnId());
+			rs = psmt.executeQuery();
+			if (rs.next()) { // 한레코드일때는 if(전체조회 일때는 while)
+				psmt = conn.prepareStatement(HIT_UPDATE); // 조회수 증가
+				psmt.setInt(1, vo.getnId());
+				psmt.execute(); // 조회수를 1증가한다
+
+				vo = new NoticeVo(); // 초기화하고
+				vo.setnId(rs.getInt("nid")); // 값들을 가져와서
+				vo.setnWriter(rs.getString("nwriter"));
+				vo.setnTitle(rs.getString("ntitle"));
+				vo.setnContent(rs.getString("ncontent"));
+				vo.setnDate(rs.getDate("ndate"));
+				vo.setnHit(rs.getInt("nhit"));
+				vo.setnAttach(rs.getString("nattach"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { // finally되면 닫아주는 프로그램 실행 (밑의 메소드 만들어서)
+			close();
+		}
+
+		return vo;
+	}
+	
 	public int insert(NoticeVo vo) {
 		int n = 0;	
 		try {
@@ -88,7 +119,7 @@ public class NoticeDao {
 			psmt.setString(1, vo.getnWriter());
 			psmt.setString(2, vo.getnTitle());
 			psmt.setString(3, vo.getnContent());	
-			psmt.setString(4, vo.getnAttatch());
+			psmt.setString(4, vo.getnAttach());
 			
 			n =psmt.executeUpdate();
 			

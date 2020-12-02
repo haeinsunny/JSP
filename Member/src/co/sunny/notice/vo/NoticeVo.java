@@ -1,4 +1,4 @@
-package co.sunny.notice;
+package co.sunny.notice.vo;
 
 import java.sql.Date;
 
@@ -9,6 +9,15 @@ public class NoticeVo {
 	private String nContent;	
 	private int nHit;	
 	private String nAttach;
+	
+	public String getnAttach() {
+		return nAttach;
+	}
+
+	public void setnAttach(String nAttach) {
+		this.nAttach = nAttach;
+	}
+
 	private Date nDate;
 	
 	public int getnId() {
@@ -51,13 +60,7 @@ public class NoticeVo {
 		this.nHit = nHit;
 	}
 	
-	public String getnAttatch() {
-		return nAttach;
-	}
 
-	public void setnAttatch(String nAttatch) {
-		this.nAttach = nAttatch;
-	}
 
 	public Date getnDate() {
 		return nDate;

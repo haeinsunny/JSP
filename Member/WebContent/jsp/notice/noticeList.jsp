@@ -10,7 +10,9 @@
 </head>
 <body>
 <div align="center">
-	<div><h3>공지사항 목록</h3></div>
+	<br/>
+	<div><h3>공지사항</h3></div>
+	<br/>
 	<div>
 		<table border="1">	
 			<tr align="center">
@@ -22,7 +24,7 @@
 				<th width="100">조회수</th>				
 			</tr>
 			<c:forEach var="no" items="${list }">
-				<tr align="center">				
+				<tr align="center" class="record" onclick="location.href='/Member/NoticeRead.do?id=${no.nId}'">				
 					<td width="100">${no.nId }</td>	
 					<td width="300">${no.nTitle }</td>	
 					<td width="100">${no.nWriter }</td>	
@@ -38,14 +40,6 @@
 			</c:forEach>
 		</table>
 		<br/>	
-		<div>	
-			<form id="frm" name="frm" action="" method="">
-				<input type="hidden" id="id" name="id">
-				<c:if test="${auth eq 'admin' }">
-					<button type="button" onclick="location.href='jsp/notice/noticeForm'">글쓰기</button>
-				</c:if>
-			</form>
-		</div>
 	</div>
 </div>
 </body>

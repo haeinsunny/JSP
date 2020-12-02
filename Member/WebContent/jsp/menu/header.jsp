@@ -41,16 +41,15 @@
 
 		
         <!-- Dropdown -->
-        <c:if test="${auth eq 'admin' }">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              회원관리
+        <c:if test="${auth eq 'admin' }">  
+        	<li class="nav-item dropdown">       
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+              	회원관리
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/Member/MemberList.do">회원정보 관리</a>
               <a class="dropdown-item" href="/Member/jsp/notice/noticeForm.jsp">공지사항 등록</a>
             </div>
-          </li>
         </c:if>
       </ul>
     </div>

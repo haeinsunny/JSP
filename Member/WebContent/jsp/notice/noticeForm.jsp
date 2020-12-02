@@ -24,7 +24,7 @@
 	</div>
 	<br/>
 	<div align="center">
-		<form id="frm" name="frm" action="/Member/NoticeInsert.do" method="post" enctype="multipast/form-data">
+		<form id="frm" name="frm" action="/Member/NoticeInsert.do" method="post" enctype="multipart/form-data">
 			<table border="1">
 				<tr align="center">
 					<th width="100" >제목</th>
@@ -41,15 +41,15 @@
 				<tr align="center">
 					<th width="100" >첨부파일</th>
 					<td width="500" align="left">
-						<input type="file" id="attatch" name="attatch">							
+						<input type="file" id="fileName" name="fileName">							
 					</td>
 				</tr>
 			</table>
 			<br/>
 			<div>
-				<input type="submit" class="btn btn-warning" value="저장">&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" class="btn btn-warning" value="등록">&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="reset" class="btn btn-light" value="취소">&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-secondary" onclick="location.href='/Member/NoticeList.do'"></button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='/Member/NoticeList.do'">목록보기</button>
 			</div>
 		</form>	
 	</div>

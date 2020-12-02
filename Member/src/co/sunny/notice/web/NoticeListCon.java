@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.sunny.common.MemberCommand;
 import co.sunny.member.command.MemberList;
-import co.sunny.notice.NoticeVo;
 import co.sunny.notice.dao.NoticeDao;
+import co.sunny.notice.vo.NoticeVo;
 
 
 @WebServlet("/NoticeList.do")
